@@ -23,6 +23,7 @@ namespace var5lab2
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }

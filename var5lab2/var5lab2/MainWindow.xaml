@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:var5lab2"
         mc:Ignorable="d"
          Title="MainWindow" Height="320" Width="400">
+   
+        <Window.DataContext>
+            <local:MainWindowViewM> </local:MainWindowViewM>
+        </Window.DataContext>
+    <!--<Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -18,7 +29,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Content="Оплата покупки" FontWeight="Bold" Grid.Row="0" Grid.Column="0" FontSize="15" Margin="5,5,0,0"/>
+        <Label Content="Оплата покупки" FontWeight="Bold" Grid.Row="0" Grid.Column="0" 
+               FontSize="15" Margin="5,5,0,0" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" ></ColumnDefinition>
@@ -30,36 +42,38 @@
             <Label Content="Cтоимость товара" Grid.Column="0" Margin="5,5,0,0"></Label>
             <Label Content="1020 руб." Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" FontWeight="Bold"></Label> 
         </Grid>
-        <RadioButton Content="Наличными при получении" Grid.Row="2" Grid.Column="0" Margin="5,5,0,0" />
+        <RadioButton Content="Наличными при получении" IsChecked="{Binding ByCash}" Grid.Row="2" Grid.Column="0" Margin="5,5,0,0" />
         <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="Сдача с" Grid.Column="0" Margin="5,0,0,5" ></Label>
-            <ComboBox Grid.Column="1" Margin="0,5,10,5" >
-                <TextBlock>5000</TextBlock>
-                <TextBlock>10000</TextBlock>
-            </ComboBox>
-            <TextBlock Grid.Column="2" Margin="0,5,0,0">руб.</TextBlock>  
+            <Label Content="Сдача с" Grid.Column="0" Margin="5,0,0,5" Visibility="{Binding Vis}" ></Label>
+            <ComboBox Grid.Column="1" Margin="0,5,10,5" Visibility="{Binding Vis}"
+                      ItemsSource="{Binding Surrender}"
+                      SelectedItem="{Binding SelectedSur}"
+                      
+>
+         </ComboBox>
+            <TextBlock Grid.Column="2" Margin="0,5,0,0" Visibility="{Binding Vis}">руб.</TextBlock>  
         </Grid>
-        <RadioButton Content="Банковской картой" Grid.Row="4" Grid.Column="0" Margin="5,5,0,0" />
+        <RadioButton Content="Банковской картой" IsChecked="{Binding Card}" Grid.Row="4" Grid.Column="0" Margin="5,5,0,0" />
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
            </Grid.ColumnDefinitions>
-            <Label Content="Номер карты" Grid.Column="0" Margin="5,5,0,0"/>
-            <TextBox Text="" Grid.Column="1" Margin="0,5,0,5"/>
+            <Label Content="Номер карты" Grid.Column="0" Margin="5,5,0,0" Visibility="{Binding VisCard}"/>
+            <TextBox Grid.Column="1" Margin="0,5,10,5" Text="{Binding NumOfCard}" Visibility="{Binding VisCard}" />
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="Держатель" Grid.Column="0" Margin="5,5,0,0" />
-            <TextBox Text="" Grid.Column="1" Margin="0,5,0,5" />
+            <Label Content="Держатель" Grid.Column="0" Margin="5,5,0,0" Visibility="{Binding VisCard}" />
+            <TextBox Text="{Binding Holder}" Grid.Column="1" Margin="0,5,10,5" Visibility="{Binding VisCard}"/>
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
@@ -69,35 +83,16 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="Действует до" Grid.Row="7" Grid.Column="0" Margin="5,5,0,0"/>
-        <ComboBox IsEditable="True" IsReadOnly="True" Text="мм" Grid.Column="1" Margin="5,5,0,0">
-            <TextBlock Text="01"/>
-            <TextBlock Text="02"/>
-            <TextBlock Text="03"/>
-            <TextBlock Text="04"/>
-            <TextBlock Text="05"/>
-            <TextBlock Text="06"/>
-            <TextBlock Text="07"/>
-            <TextBlock Text="08"/>
-            <TextBlock Text="09"/>
-            <TextBlock Text="10"/>
-            <TextBlock Text="11"/>
-            <TextBlock Text="12"/>
+            <Label Content="Действует до" Grid.Row="7" Grid.Column="0" Margin="5,5,0,0" Visibility="{Binding VisCard}"/>
+            <ComboBox Visibility="{Binding VisCard}" IsEditable="True" IsReadOnly="True" Text="мм" Grid.Column="1" Margin="5,5,0,0" ItemsSource="{Binding Month}"
+                      SelectedItem="{Binding SelectedMonth}">
+                    </ComboBox>
+            <ComboBox Visibility="{Binding VisCard}" IsEditable="True" IsReadOnly="True" Text="гг" Grid.Column="2" Margin="5,5,0,0" ItemsSource="{Binding Year}"
+                      SelectedItem="{Binding SelectedYear}">
+           
         </ComboBox>
-        <ComboBox IsEditable="True" IsReadOnly="True" Text="гг" Grid.Column="2" Margin="5,5,0,0">
-            <TextBlock Text="17"/>
-            <TextBlock Text="18"/>
-            <TextBlock Text="19"/>
-            <TextBlock Text="20"/>
-            <TextBlock Text="21"/>
-            <TextBlock Text="22"/>
-            <TextBlock Text="23"/>
-            <TextBlock Text="24"/>
-            <TextBlock Text="25"/>
-            <TextBlock Text="26"/>
-        </ComboBox>
-            <Label  Content="CVV"  Grid.Column="3" Margin="5,5,0,0" />
-            <TextBox Text=""  Grid.Column="4" Margin="5,5,0,0" />
+            <Label Visibility="{Binding VisCard}"  Content="CVV"  Grid.Column="3" Margin="10,5,0,0" />
+            <TextBox Visibility="{Binding VisCard}" Text="{Binding CVV }"  Grid.Column="4" Margin="5,5,10,0" />
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
@@ -109,7 +104,10 @@
             </Grid.ColumnDefinitions>
             <Button  Content="Оплатить" Grid.Column="0" Margin="5,5,0,5"  />
             <Button  Content="Вернуться" Grid.Column="2" Margin="0,5,0,5" />
-            <Button  Content="Отмена"  Grid.Column="4" Margin="0,5,0,5" />
+            <Button  Content="Отмена"  Grid.Column="4" Margin="0,5,5,5" />
+            <ItemsControl>
+                
+            </ItemsControl>
         </Grid>
     </Grid>
 </Window>
