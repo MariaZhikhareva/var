@@ -10,13 +10,11 @@
         <Window.DataContext>
             <local:MainWindowViewM> </local:MainWindowViewM>
         </Window.DataContext>
-    <!--<Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>-->
+    <Window.Resources>
+        <local:NotEmptyValidationRule 
+            x:Key="NotEmptyValidationRule"></local:NotEmptyValidationRule>
+      
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -65,7 +63,13 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
            </Grid.ColumnDefinitions>
             <Label Content="Номер карты" Grid.Column="0" Margin="5,5,0,0" Visibility="{Binding VisCard}"/>
-            <TextBox Grid.Column="1" Margin="0,5,10,5" Text="{Binding NumOfCard}" Visibility="{Binding VisCard}" />
+            <TextBox Grid.Column="1" Margin="0,5,10,5" Visibility="{Binding VisCard}">
+                <Binding Path="NumOfCard">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule MaxNum="9999999999999999"></local:NotEmptyValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
@@ -92,7 +96,14 @@
            
         </ComboBox>
             <Label Visibility="{Binding VisCard}"  Content="CVV"  Grid.Column="3" Margin="10,5,0,0" />
-            <TextBox Visibility="{Binding VisCard}" Text="{Binding CVV }"  Grid.Column="4" Margin="5,5,10,0" />
+            <TextBox Visibility="{Binding VisCard}"  Grid.Column="4" Margin="5,5,10,0">
+                <Binding Path="CVV">
+                    <Binding.ValidationRules>
+                        <local:NotEmptyValidationRule MaxNum="999"></local:NotEmptyValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>

@@ -12,11 +12,11 @@ namespace var5lab2
     {
          
         
-        public Double NumOfCard { get; set; }
+        public double? NumOfCard { get; set; }
 
         public String Holder { get; set; }
 
-        public Double CVV { get; set; }
+        public int? CVV { get; set; }
         private Visibility _vis;
         public Visibility Vis
         {
@@ -33,10 +33,10 @@ namespace var5lab2
         public string SelectedSur { get; set; }
 
         public List<String> Month { get; set; }
-        public double SelectedMonth { get; set; }
+        public int? SelectedMonth { get; set; }
 
         public List<String> Year { get; set; }
-        public double SelectedYear { get; set; }
+        public int? SelectedYear { get; set; }
 
         
         private bool _byCash=true;
