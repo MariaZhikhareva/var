@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace var5lab2
 {
@@ -30,11 +31,11 @@ namespace var5lab2
             set { _visCard = value; OnPropertyChanged("VisCard"); }
         }
         public List<String> Surrender { get; set; }
-        public string SelectedSur { get; set; }
+        public int SelectedSur { get; set; }
 
         public List<String> Month { get; set; }
         public int? SelectedMonth { get; set; }
-
+       
         public List<String> Year { get; set; }
         public int? SelectedYear { get; set; }
 

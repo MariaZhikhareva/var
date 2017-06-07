@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 
 namespace var5lab2
@@ -27,11 +28,9 @@ namespace var5lab2
                 return new ValidationResult(false, "Много цифр!");
             else
                 return new ValidationResult(true, String.Empty);
-            //var s = value as String;
-            //if (String.IsNullOrWhiteSpace(s))
-            //{ return new ValidationResult(false, "Введите верное значение"); }
-            //return new ValidationResult(true, String.Empty);
+            
         }
         
     }
+
 }
