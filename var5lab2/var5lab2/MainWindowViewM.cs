@@ -13,11 +13,11 @@ namespace var5lab2
     {
          
         
-        public double? NumOfCard { get; set; }
+        public static Int64 NumOfCard { get; set; }
+        public static int ID { get; set; }
+        public static String Holder { get; set; }
 
-        public String Holder { get; set; }
-
-        public int? CVV { get; set; }
+        public static int? CVV { get; set; }
         private Visibility _vis;
         public Visibility Vis
         {
@@ -31,13 +31,13 @@ namespace var5lab2
             set { _visCard = value; OnPropertyChanged("VisCard"); }
         }
         public List<String> Surrender { get; set; }
-        public int SelectedSur { get; set; }
+        public static int SelectedSur { get; set; }
 
         public List<String> Month { get; set; }
-        public int? SelectedMonth { get; set; }
+        public static int? SelectedMonth { get; set; }
        
         public List<String> Year { get; set; }
-        public int? SelectedYear { get; set; }
+        public static int? SelectedYear { get; set; }
 
         
         private bool _byCash=true;
@@ -80,7 +80,20 @@ namespace var5lab2
             if (this.PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
+        public static void SaveCardData()
+        {
+            Card a = new Card(ID, NumOfCard, Holder, SelectedMonth, SelectedYear, CVV);
+            MyBDEntities context = new MyBDEntities();
+            context.Card.Add(a);
+            context.SaveChangesAsync();
+        }
+        public static void SaveCashData()
+        {
+            Cash a = new Cash(ID, SelectedSur);
+            MyBDEntities context = new MyBDEntities();
+            context.Cash.Add(a);
+            context.SaveChangesAsync();
+        }
         public MainWindowViewM()
         {
             

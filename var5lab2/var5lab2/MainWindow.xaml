@@ -116,7 +116,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button  Content="Оплатить" Style="{StaticResource ButtonStyle}" Command="{Binding Save}" CommandParameter="{Binding}" Grid.Column="0" Margin="5,5,0,5"  />
+            <Button  Content="Оплатить"  Style="{StaticResource ButtonStyle}" Command="{Binding SaveData}" CommandParameter="{Binding}" Grid.Column="0" Margin="5,5,0,5"  />
             <Button  Content="Вернуться" Style="{StaticResource ButtonStyle}" Grid.Column="2" Margin="0,5,0,5" />
             <Button  Content="Отмена" Style="{StaticResource ButtonStyle}" Grid.Column="4" Margin="0,5,5,5" />
             <ItemsControl>
